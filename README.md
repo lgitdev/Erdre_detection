@@ -65,6 +65,7 @@ Vous pouvez installer ces librairies manuellement, par exemple :
 
 ```bash
 pip install opencv-python numpy pandas matplotlib scipy scikit-image
+```
 
 # Détails des modules
 
