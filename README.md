@@ -41,11 +41,7 @@ Notre projet se base sur un ensemble d'images aériennes numérisées. Nous suiv
 
 **Schéma résumé** :
 
- [ Répertoire d'images ] ---> [Erdre_1 1.py : Image & Dataset] ---> [Preprocessing]
- 
-                \                                              \---> [Matching 2.py : Feature matching & Homography]
-                
-                 \-----------------------------------------------> [Analyse : mask + contours]
+![image](https://github.com/user-attachments/assets/dea00e3e-f6b1-432d-abb7-2afaf5a41615)
 
 
 # Prérequis & Installation
@@ -122,6 +118,9 @@ Représente un ensemble d’images à analyser.
     - Retourne un dictionnaire contenant les homographies et les masques associés à chaque paire.
 - **`get_image(name)`** : Recherche l’image par son nom et retourne la matrice correspondante (OpenCV).
 
+![image](https://github.com/user-attachments/assets/e71a9584-5af8-4676-b678-195f3a1fe46f)
+
+
 ---
 
 ## Module `matching 2.py`
@@ -141,6 +140,9 @@ Il contient :
 - **`filtre_parallel_matches(kpt1, kpt2, matches, tolerance)`** :  Conserve seulement les correspondances ayant des angles jugés parallèles.
 - **`create_artificial_match(kpt1, kpt2, matches, match_number)`** :  Génère artificiellement des correspondances supplémentaires lorsqu’il n’y en a pas assez pour calculer une homographie.
 
+![image](https://github.com/user-attachments/assets/1f2d452d-0f11-4a4c-82ae-da6a8b752f5b)
+
+
 ### Fonctions de calcul d’homographie / transformations :
 
 - **`ransac(kpt1, kpt2, matches, seuil_ransac)`** :  Tente de trouver la matrice d’homographie `H` via `cv.findHomography` avec la méthode **RANSAC**.
@@ -152,6 +154,8 @@ Il contient :
 - **`matrice_angles(ANGLES, names)`** :  Crée et affiche une matrice de chaleur (*heatmap*) représentant les angles estimés entre les paires d’images.
 
 **NB :** Les algorithmes **RANSAC** et **ORB** sont particulièrement utiles pour assembler des images présentant des décalages ou rotations significatives.
+
+![image](https://github.com/user-attachments/assets/1d28be8a-a285-4274-8ce7-8509c1388296)
 
 ---
 
@@ -176,6 +180,8 @@ Ce script permet de détection les contours (segmentation) autour de la rivière
 - Potentiellement applique une rotation spécifique à l’image (via une liste prédéfinie d’angles : `rot_angle`).
 - Calcule ensuite le masque binaire de la rivière (`create_river_mask`) et dessine les contours détectés sur l’image originale.
 - Sauvegarde les résultats (image annotée et masque binaire correspondant) dans le dossier `output_dir`.
+
+![image](https://github.com/user-attachments/assets/f613af04-3d27-4ce4-a8fc-5a8251704d85)
 
 ---
 
