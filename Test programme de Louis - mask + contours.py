@@ -9,9 +9,17 @@ from skimage.feature import graycomatrix, graycoprops
 
 ########____________CROP IMAGE__________#######
 def remove_black_borders(image, threshold=0.5):
-    """
-    Supprime les bordures noires d'une image si plus de `threshold` (50% par défaut) d'une ligne ou colonne est noire.
-    """
+    '''
+    Supprime les bordures noires d'une image en détectant les lignes et colonnes
+    où plus de `threshold` proportion de pixels sont noirs.
+
+    Paramètres :
+    - image (ndarray) : image d'entrée au format BGR.
+    - threshold (float) : proportion maximale de noir tolérée (0.0 - 1.0).
+
+    Retour :
+    - ndarray : image recadrée sans les bordures noires.
+    '''
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     height, width = gray.shape
 
@@ -32,6 +40,20 @@ def remove_black_borders(image, threshold=0.5):
 
 ########____________RIVER MASK__________#######
 def create_river_mask(image, kernel, min_area=15000):
+    '''
+    Crée un masque binaire correspondant aux contours de la rivière sur une image.
+
+    La fonction utilise Sobel et Laplacien pour accentuer les reliefs,
+    puis applique un seuillage double avec ouverture et fermeture morphologique.
+
+    Paramètres :
+    - image (ndarray) : image en couleur.
+    - kernel (ndarray) : noyau morphologique à utiliser.
+    - min_area (int) : surface minimale pour conserver un composant connexe.
+
+    Retour :
+    - ndarray : masque binaire de la rivière.
+    '''
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
     # Sobel & Laplacien pour augmenter le contraste
@@ -89,12 +111,31 @@ def create_river_mask(image, kernel, min_area=15000):
 
 ########____________PROCESS IMAGE__________#######
 def process_image(input_dir, output_dir, new_width=800, new_height=600, year=2007):
+    '''
+    Traite toutes les images d'un dossier pour générer les masques de rivières.
+
+    Étapes :
+    - Chargement et recadrage de l'image
+    - Rotation (selon liste `rot_angle`)
+    - Détection des rivières et génération du masque
+    - Sauvegarde du masque et de la photo avec contours tracés
+
+    Paramètres :
+    - input_dir (str) : dossier contenant les images originales.
+    - output_dir (str) : dossier de sortie pour sauvegarder les résultats.
+    - new_width, new_height (int) : dimensions cibles (non utilisé ici).
+    - year (int) : année utilisée pour nommer les fichiers en sortie.
+
+    Retour :
+    - ndarray : dernier masque généré (utile pour tests).
+    '''
     os.makedirs(output_dir, exist_ok=True)
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1,1))
     compteur = 1
     
     # Initialize river_mask with a default value (None or an empty array)
     river_mask = None
+    # Adapter ici les bons angles si besoin -> retirer le commentaire de l'année en question 
     #1923 rot_angle = [57, 64, 68, 0, 170]
     #1943 rot_angle = [-76, -83, -93, -95, -94]
     #1944 rot_angle = [89, 89, 89, 89, 89, -87, -87, -87]
