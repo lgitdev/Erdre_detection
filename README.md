@@ -42,7 +42,9 @@ Notre projet se base sur un ensemble d'images aériennes numérisées. Nous suiv
 **Schéma résumé** :
 
  [ Répertoire d'images ] ---> [Erdre_1 1.py : Image & Dataset] ---> [Preprocessing]
+ 
                 \                                              \---> [Matching 2.py : Feature matching & Homography]
+                
                  \-----------------------------------------------> [Analyse : mask + contours]
 
 
