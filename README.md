@@ -15,15 +15,14 @@ Vous retrouverez également des indications sur l’organisation du projet, les 
 
 ## Table des matières
 
-1. [Architecture générale]()
-2. [Prérequis & Installation]()
-3. [Détails des modules]()
-    1. [Module `Erdre_1 1.py`]()
-    2. [Module `matching 2.py`]()
-    3. [Script `Test programme de Louis - mask + contours.py`]()
-4. [Exemple de flux de travail]()
-5. [Perspectives d’amélioration]()
-6. [Crédits et remerciements]()
+1. Architecture générale
+2. Prérequis & Installation
+3. Détail des modules
+   1. Module `Erdre_1 1.py`
+   2. Module `matching 2.py`
+   3. Script `Test programme de Louis - mask + contours.py`
+4. FLux de travail
+5. Remerciements
 
 ---
 
